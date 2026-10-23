@@ -1,6 +1,6 @@
 package com.example.lab7
 
-import androidx.compose.ui.test.assertExists
+
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -17,11 +17,15 @@ class FormulaZeroTest {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun addRaceAndReturnHome() {
+    fun navigate_to_races_add_race_and_return_home() {
         composeTestRule.onNodeWithTag("raceButton").performClick()
-        composeTestRule.onNodeWithTag("locationInput").performTextInput("Montreal")
+        composeTestRule.onNodeWithText("Upcoming Races").assertExists()
+
+        composeTestRule.onNodeWithTag("locationInput")
+            .performTextInput("Canada")
         composeTestRule.onNodeWithTag("addRaceButton").performClick()
-        composeTestRule.onNodeWithText("Montreal").assertExists()
+        composeTestRule.onNodeWithText("Canada").assertExists()
+
         composeTestRule.onNodeWithTag("backButton").performClick()
         composeTestRule.onNodeWithText("FormulaZero Home").assertExists()
     }
